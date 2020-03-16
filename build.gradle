@@ -1,0 +1,76 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        // Sdk and tools
+        compileSdkVersion = 29
+        minSdkVersion = 26
+        targetSdkVersion = 29
+        // App dependencies
+        appCompatVersion = '1.1.0'
+        constraintLayoutVersion = '1.1.3'
+        coroutinesVersion = "1.3.2"
+        fragmentVersion = '1.1.1'
+        glideVersion = '4.9.0'
+        kotlinVersion = '1.3.70'
+        kotlinxCoreVersion = '1.2.0'
+        lifecycleVersion = '2.2.0'
+        recyclerViewVersion = '1.1.0'
+        rvSelectionVersion = '1.1.0-rc01'
+        roomVersion = '2.2.4'
+        navigationVersion = '2.2.1'
+        workVersion = '2.3.3'
+        pagingVersion = '2.1.1'
+        gsonVersion = '2.6.2'
+        okhttp = '3.10.0'
+        retrofit = '2.6.0'
+        daggerSupport = '2.22.1'
+        androidDagger = '2.23.2'
+        daggerCompiler = '2.25.2'
+        lottieVersion = '3.3.0'
+        multidex = '2.0.1'
+        //ANKO
+        ankoVersion = '0.10.8'
+        //sdp
+        sdpAndroid = '1.0.6'
+        // Testing dependencies
+        junitVersion = '4.12'
+        junitJupiter = '5.5.2'
+        junitPlatform = '1.5.2'
+        espressoVersion = '3.2.0'
+        coreTestingVersion = '2.1.0'
+        testExtJunit = '1.1.1'
+        mockitoVersion = "2.25.0"
+        mockwebserverVersion = "3.8.1"
+        testRulesVersion = "1.2.0"
+    }
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigationVersion"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

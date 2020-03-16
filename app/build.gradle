@@ -1,0 +1,148 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-platform-android'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.jawad.newsapp"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+    }
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        pickFirst 'META-INF/kotlinx-io.kotlin_module'
+        pickFirst 'META-INF/atomicfu.kotlin_module'
+        pickFirst 'META-INF/kotlinx-coroutines-core.kotlin_module'
+        pickFirst 'META-INF/kotlinx-coroutines-io.kotlin_module'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+    implementation "androidx.core:core-ktx:$rootProject.kotlinxCoreVersion"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$rootProject.kotlinVersion"
+
+    /**-------------------testing libs------------------------------------------**/
+    //UI Testing , AndroidJUnitRunner and JUnit Rules &Espresso dependencies
+    //junit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testImplementation 'org.junit.platform:junit-platform-runner:1.5.2'
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.testExtJunit"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+    androidTestImplementation "org.assertj:assertj-core:3.12.2"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.mockwebserverVersion"
+    implementation "androidx.test:rules:$rootProject.testRulesVersion"
+
+    implementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
+    //Mockk
+    //implementation 'io.mockk:mockk:1.9.3'
+    implementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1'
+    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'
+    /**-------------------------------------------------------------**/
+
+    //android libs
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation "androidx.paging:paging-runtime:$rootProject.pagingVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleVersion"
+    implementation "androidx.work:work-runtime-ktx:$rootProject.workVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+
+    //Dagger
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerSupport"
+    implementation "com.google.dagger:dagger-android:$rootProject.androidDagger"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.androidDagger"
+    implementation "com.google.dagger:dagger:$rootProject.daggerCompiler"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerCompiler"
+
+    //sdp
+    implementation "com.intuit.sdp:sdp-android:$rootProject.sdpAndroid"
+    implementation "com.intuit.ssp:ssp-android:$rootProject.sdpAndroid"
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:$rootProject.coroutinesVersion"
+    implementation "android.arch.lifecycle:viewmodel:$rootProject.fragmentVersion"
+    implementation "android.arch.lifecycle:extensions:$rootProject.fragmentVersion"
+
+    //ANKO
+    implementation "org.jetbrains.anko:anko-commons:$rootProject.ankoVersion"
+    implementation "org.jetbrains.anko:anko-design:$rootProject.ankoVersion"
+    androidExtensions {
+        experimental = true
+    }
+
+    //Navigation fragment
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+
+    //recyclerview
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:$rootProject.rvSelectionVersion"
+
+    //MultiDex
+    implementation "androidx.multidex:multidex:$rootProject.multidex"
+
+    //Lottie Animation
+    implementation "com.airbnb.android:lottie:$rootProject.lottieVersion"
+
+    // Networking
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+}
