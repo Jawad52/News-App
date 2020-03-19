@@ -21,18 +21,7 @@ class DateConverter {
          * @return Long data
          */
         @SuppressLint("SimpleDateFormat")
-        fun getConvertedDate(date: String): Long {
-            val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
-            try {
-                return format.parse(date).time
-            } catch (e: ParseException) {
-                e.printStackTrace()
-            }
-            return 0
-        }
-
-        @SuppressLint("SimpleDateFormat")
-        fun parseDate(time: String?): String? {
+        fun getConvertedDate(time: String?): String? {
             val inputPattern = "yyyy-MM-dd'T'HH:mm:ss"
             val outputPattern = "dd MMMM"
             val inputFormat = SimpleDateFormat(inputPattern)

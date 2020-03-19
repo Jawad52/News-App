@@ -32,7 +32,7 @@ class NewsViewHolder(override val containerView: View) : RecyclerView.ViewHolder
         tv_caption.text = newsItem.byline ?: ""
         var date = newsItem.updatedDate
         date = date.subSequence(0, date.lastIndexOf("-")).toString()
-        tv_timestamp.setReferenceTime(DateConverter.getConvertedDate(date))
+        tv_time.text = DateConverter.getConvertedDate(date)
 
         if (!newsItem.multimedia.isNullOrEmpty()) {
             for (newItem in newsItem.multimedia) {

@@ -27,7 +27,8 @@
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/news_image" />
 
     </androidx.cardview.widget.CardView>
 
@@ -56,13 +57,13 @@
         android:textColor="@color/textGray"
         android:textSize="@dimen/_10ssp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_timestamp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_time"
         app:layout_constraintStart_toStartOf="@+id/tv_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.github.curioustechizen.ago.RelativeTimeTextView
-        android:id="@+id/tv_timestamp"
+    <TextView
+        android:id="@+id/tv_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/_6sdp"

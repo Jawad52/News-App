@@ -59,7 +59,6 @@
         android:layout_marginTop="@dimen/_4sdp"
         android:clipToPadding="false"
         android:scrollbars="none"
-        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,5 +76,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        tools:visibility="gone"
+        android:indeterminateTint="@color/textBlack"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

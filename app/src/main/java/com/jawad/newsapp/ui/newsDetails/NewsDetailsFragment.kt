@@ -53,10 +53,14 @@ class NewsDetailsFragment : BaseFragment() {
     private fun subscribeUi(view: View) {
         newsDetailsViewModel.newsModel.observe(this, Observer {
             view.tv_des_title.text = it.title
-            view.tv_des_article.text = "Article \n${it.byline}"
+            if (it.byline.isNotEmpty()) {
+                view.tv_des_article.text = "Article \n${it.byline}"
+            } else {
+                view.tv_des_article.visibility = View.GONE
+            }
             var date = it.updatedDate
             date = date.subSequence(0, date.lastIndexOf("-")).toString()
-            val dateText = DateConverter.parseDate(date)
+            val dateText = DateConverter.getConvertedDate(date)
             val time = DateConverter.parseTime(date)
             val textDate = "$dateText    $time"
 

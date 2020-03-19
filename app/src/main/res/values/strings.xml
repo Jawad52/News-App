@@ -7,4 +7,5 @@
     <string name="daily_news"></string>
     <string name="daily_nnews">Daily \nNews</string>
     <string name="share_news_details">Share news details</string>
+    <string name="news_image">News image</string>
 </resources>

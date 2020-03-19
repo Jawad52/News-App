@@ -13,8 +13,9 @@
 
         <action
             android:id="@+id/action_newsListFragment_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
+            app:destination="@id/newsDetailsFragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/newsDetailsFragment"
         android:name="com.jawad.newsapp.ui.newsDetails.NewsDetailsFragment"

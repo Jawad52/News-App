@@ -27,19 +27,27 @@ class NewsListFragment : BaseFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_news_list
 
+    private var adapter: NewListAdapter? = null
+
     override fun initializeDagger() {
         newListViewModel = injectViewModel(viewModel)
     }
 
     override fun initializePresenter(view: View) {
-        val adapter = NewListAdapter()
+
         view.rv_newsList.setHasFixedSize(true)
         view.rv_newsList.addItemDecoration(
             VerticalItemDecoration(resources.getDimension(R.dimen._16sdp).toInt(), true)
         )
-        view.rv_newsList.adapter = adapter
-        subscribeUi(view, adapter)
-        newListViewModel.getNewsList()
+        if (adapter == null) {
+            adapter = NewListAdapter()
+            view.rv_newsList.adapter = adapter
+            subscribeUi(view, adapter!!)
+            newListViewModel.getNewsList()
+        } else {
+            view.rv_newsList.adapter = adapter
+            view.progressBar.visibility = View.GONE
+        }
     }
 
     private fun subscribeUi(view: View, adapter: NewListAdapter) {
