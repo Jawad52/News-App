@@ -29,12 +29,6 @@ import kotlin.coroutines.CoroutineContext
 @Module(includes = [ViewModelModule::class, CoreDataModule::class])
 class AppModule {
 
-    @Provides
-    @Singleton
-    fun provideGson(): Gson {
-        return GsonBuilder().create()
-    }
-
     @Singleton
     @Provides
     fun provideNewsService(@NewAPI okhttpClient: OkHttpClient,
@@ -43,7 +37,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideNewsRemoteDataSource(newsService: NewsService)
+    fun provideRemoteDataSource(newsService: NewsService)
             = RemoteDataSource(newsService)
 
     @Singleton

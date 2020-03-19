@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkRed"
-    tools:context=".ui.component.splash.SplashActivity">
+    android:background="@color/midnightExpress"
+    tools:context=".ui.splash.SplashActivity">
 
     <ImageView
         android:layout_width="match_parent"

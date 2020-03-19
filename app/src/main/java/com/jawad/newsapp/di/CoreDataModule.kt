@@ -1,6 +1,7 @@
 package com.jawad.newsapp.di
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import com.jawad.newsapp.BuildConfig
 import dagger.Provides
@@ -32,6 +33,12 @@ class CoreDataModule {
     fun provideLoggingInterceptor() =
         HttpLoggingInterceptor().apply { level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
         else HttpLoggingInterceptor.Level.NONE }
+
+    @Provides
+    @Singleton
+    fun provideGson(): Gson {
+        return GsonBuilder().create()
+    }
 
     @Provides
     @Singleton

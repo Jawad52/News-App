@@ -5,4 +5,13 @@
     <color name="colorAccent">#03DAC5</color>
 
     <color name="darkRed">#FD2736</color>
+    <color name="midnightExpress">#23272f</color>
+    <color name="greyChateau">#95989d</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="textBlack">#E0000000</color>
+    <color name="textGray">#c1c1c1</color>
+    <color name="transGray">#3395989d</color>
+    <color name="lightGray">#3c434e</color>
 </resources>

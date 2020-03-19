@@ -1,4 +1,4 @@
-package com.jawad.newsapp.ui.component.splash
+package com.jawad.newsapp.ui.splash
 
 import android.os.Bundle
 import android.os.Handler

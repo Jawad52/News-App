@@ -1,6 +1,9 @@
 package com.jawad.newsapp.di
 
+import com.jawad.newsapp.MainActivity
+import com.jawad.newsapp.ui.splash.SplashActivity
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 /**
  * The class ActivityModuleBuilder
@@ -11,6 +14,12 @@ import dagger.Module
  * @since 15 Mar 2020
  */
 
+@Suppress("unused")
 @Module
-class ActivityModuleBuilder {
+abstract class ActivityModuleBuilder {
+    @ContributesAndroidInjector
+    abstract fun contributeSplashActivity(): SplashActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeMainActivity(): MainActivity
 }

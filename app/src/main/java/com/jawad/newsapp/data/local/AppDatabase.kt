@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.jawad.newsapp.data.local.dao.NewsDao
-import com.jawad.newsapp.data.local.model.NewsEntity
+import com.jawad.newsapp.data.local.model.NewsItem
 import com.jawad.newsapp.data.remote.dto.Multimedia
 
 /**
@@ -18,9 +19,10 @@ import com.jawad.newsapp.data.remote.dto.Multimedia
  */
 
 @Database(
-    entities = [NewsEntity::class, Multimedia::class],
+    entities = [NewsItem::class, Multimedia::class],
     version = 1, exportSchema = false
 )
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun newsDao(): NewsDao

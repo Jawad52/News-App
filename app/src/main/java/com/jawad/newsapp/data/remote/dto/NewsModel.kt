@@ -17,18 +17,63 @@ import com.google.gson.annotations.SerializedName
  * https://plugins.jetbrains.com/plugin/9960-json-to-kotlin-class-jsontokotlinclass-
  */
 
-@Parcelize
+
 data class NewsModel(
-    @SerializedName("copyright")
-    var copyright: String?, // Copyright (c) 2020 The New York Times Company. All Rights Reserved.
-    @SerializedName("last_updated")
-    var lastUpdated: String?, // 2020-03-15T02:04:38-04:00
-    @SerializedName("num_results")
-    var numResults: Int?, // 59
-    @SerializedName("results")
-    var results: List<NewsItem?>?,
+    
+    @SerializedName("abstract")
+    var abstract: String? = null, // Schools are closed. Events are canceled. If the virus keeps spreading, governments have even more disruptive options in mind.
+    
+    @SerializedName("byline")
+    var byline: String? = null, // By Mike Baker and Miriam Jordan
+    
+    @SerializedName("created_date")
+    var createdDate: String? = null, // 2020-03-13T05:00:24-04:00
+    
+    @SerializedName("des_facet")
+    var desFacet: List<String>,
+    
+    @SerializedName("geo_facet")
+    var geoFacet: List<String>,
+    
+    @SerializedName("item_type")
+    var itemType: String? = null, // Article
+    
+    @SerializedName("kicker")
+    var kicker: String? = null,
+    
+    @SerializedName("material_type_facet")
+    var materialTypeFacet: String,
+    
+    @SerializedName("multimedia")
+    var multimedia: List<Multimedia>,
+    
+    @SerializedName("org_facet")
+    var orgFacet: List<String>,
+    
+    @SerializedName("per_facet")
+    var perFacet: List<String>,
+    
+    @SerializedName("published_date")
+    var publishedDate: String? = null,// 2020-03-13T05:00:24-04:00
+    
     @SerializedName("section")
-    var section: String?, // home
-    @SerializedName("status")
-    var status: String? // OK
-) : Parcelable
+    var section: String? = null, // us
+    
+    @SerializedName("short_url")
+    var shortUrl: String? = null, // https://nyti.ms/33cBKRy
+    
+    @SerializedName("subsection")
+    var subsection: String? = null,
+    
+    @SerializedName("title")
+    var title: String? = null, // Efforts to Control the Coronavirus in the U.S. Could Get Even More Extreme
+    
+    @SerializedName("updated_date")
+    var updatedDate: String? = null, // 2020-03-14T12:29:45-04:00
+    
+    @SerializedName("uri")
+    var uri: String? = null, // nyt://article/7a4b8997-54e1-53ed-acc6-a020e79b4563
+    
+    @SerializedName("url")
+    var url: String? = null // https://www.nytimes.com/2020/03/13/us/coronavirus-washington-quarantines.html
+)

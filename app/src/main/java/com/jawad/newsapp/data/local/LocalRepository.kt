@@ -24,37 +24,36 @@ constructor(private val dao: NewsDao) {
      *
      * @param newsModel from api
      */
-    fun saveNews(newsModel: NewsModel) {
+    fun saveNews(newsModel: List<NewsModel>) {
         clearDatabase()
         val newsItemList: ArrayList<NewsItem> = arrayListOf()
-        for (newsItem in newsModel.results!!) {
-
-            val newsModelItem = NewsItem(id = 0,
-                title = newsItem!!.title,
-                abstract = newsItem.abstract,
-                byline = newsItem.byline,
-                childCaption = newsItem.multimedia!![0]!!.caption,
-                createdDate = newsItem.createdDate!!,
-                desFacet = newsItem.desFacet!!,
-                geoFacet = newsItem.geoFacet!!,
-                itemType = newsItem.itemType!!,
-                kicker = newsItem.kicker!!,
-                materialTypeFacet = newsItem.materialTypeFacet!!,
-                multimedia = newsItem.multimedia!!,
-                orgFacet = newsItem.orgFacet!!,
-                perFacet = newsItem.perFacet!!,
-                publishedDate = newsItem.publishedDate!!,
-                section = newsItem.section!!,
-                shortUrl = newsItem.shortUrl!!,
-                subsection = newsItem.subsection!!,
-                updatedDate = newsItem.updatedDate!!,
-                uri = newsItem.uri!!
-            )
+        for (newsItem in newsModel) {
+            val newsModelItem = NewsItem()
+            newsModelItem.title = newsItem.title!!
+            newsModelItem.abstractText = newsItem.abstract!!
+            newsModelItem.byline = newsItem.byline!!
+            newsModelItem.createdDate = newsItem.createdDate!!
+            newsModelItem.itemType = newsItem.itemType!!
+            newsModelItem.kicker = newsItem.kicker!!
+            newsModelItem.materialTypeFacet = newsItem.materialTypeFacet
+            newsModelItem.publishedDate = newsItem.publishedDate!!
+            newsModelItem.section = newsItem.section!!
+            newsModelItem.shortUrl = newsItem.shortUrl!!
+            newsModelItem.subsection = newsItem.subsection!!
+            newsModelItem.updatedDate = newsItem.updatedDate!!
+            newsModelItem.url = newsItem.url!!
+            newsModelItem.uri = newsItem.uri!!
+            newsModelItem.multimedia = newsItem.multimedia
             newsItemList.add(newsModelItem)
-            dao.insertAllMultimedia(newsItem.multimedia)
         }
         dao.insertAllNewsItem(newsItemList)
     }
+
+    /**
+     * Get news data by news ID
+     * @param newId
+     */
+    fun getNewsById(newId: Long?) = dao.getNewsById(newId!!)
 
     /**
      * Get news data list
@@ -70,7 +69,6 @@ constructor(private val dao: NewsDao) {
      * Clear all data from database
      */
     private fun clearDatabase() {
-        dao.deleteMultimedia()
         dao.deleteOldNews()
     }
 

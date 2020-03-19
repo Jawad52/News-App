@@ -17,6 +17,7 @@ buildscript {
         recyclerViewVersion = '1.1.0'
         rvSelectionVersion = '1.1.0-rc01'
         roomVersion = '2.2.4'
+        roomPersistenceVersion = '1.0.0-alpha4'
         navigationVersion = '2.2.1'
         workVersion = '2.3.3'
         pagingVersion = '2.1.1'
@@ -28,6 +29,9 @@ buildscript {
         daggerCompiler = '2.25.2'
         lottieVersion = '3.3.0'
         multidex = '2.0.1'
+        stetho = '1.5.1'
+        timberVersion = '4.7.1'
+
         //ANKO
         ankoVersion = '0.10.8'
         //sdp

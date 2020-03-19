@@ -26,15 +26,15 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty()) {
         Glide.with(view.context)
             .setDefaultRequestOptions(
-                RequestOptions().placeholder(R.drawable.ic_launcher_background).error(
-                    R.drawable.ic_launcher_background
+                RequestOptions().placeholder(R.color.midnightExpress).error(
+                    R.color.midnightExpress
                 )
             )
             .load(imageUrl)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)
     } else Glide.with(view.context)
-        .load(R.drawable.ic_launcher_background)
+        .load(R.drawable.app_logo)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(view)
 }

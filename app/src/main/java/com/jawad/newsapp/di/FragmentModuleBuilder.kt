@@ -1,6 +1,9 @@
 package com.jawad.newsapp.di
 
+import com.jawad.newsapp.ui.newsDetails.NewsDetailsFragment
+import com.jawad.newsapp.ui.newsList.NewsListFragment
 import dagger.Module
+import dagger.android.ContributesAndroidInjector
 
 /**
  * The class FragmentModuleBuilder
@@ -11,6 +14,12 @@ import dagger.Module
  * @since 15 Mar 2020
  */
 
+@Suppress("unused")
 @Module
-class FragmentModuleBuilder {
+abstract class FragmentModuleBuilder {
+    @ContributesAndroidInjector
+    abstract fun contributeNewsListFragment(): NewsListFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeNewsDetailsFragment(): NewsDetailsFragment
 }

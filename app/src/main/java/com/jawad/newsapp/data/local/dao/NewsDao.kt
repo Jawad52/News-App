@@ -2,8 +2,6 @@ package com.jawad.newsapp.data.local.dao
 
 import androidx.room.*
 import com.jawad.newsapp.data.local.model.NewsItem
-import com.jawad.newsapp.data.local.model.NewsEntity
-import com.jawad.newsapp.data.remote.dto.Multimedia
 
 /**
  * The class NewsDao
@@ -17,16 +15,24 @@ import com.jawad.newsapp.data.remote.dto.Multimedia
 @Dao
 interface NewsDao {
     /**
-     *Get all news item
-     * @return List of NewsModel
+     * Get all news item
+     * @return List of NewsEntity
      */
     @Transaction
-    @Query("SELECT * FROM news ORDER BY publishedDate")
-    fun getNews(): List<NewsEntity>
+    @Query("SELECT * FROM news ORDER BY publishedDate DESC")
+    fun getNews(): List<NewsItem>
+
+    /**
+     * Get news item by ID
+     * @return NewsEntity
+     */
+    @Transaction
+    @Query("SELECT * FROM news WHERE id =:newId")
+    fun getNewsById(newId: Long): NewsItem
 
     /**
      *Get all news item
-     * @return List of NewsModel
+     * @return List of NewsEntity
      */
     @Transaction
     @Query("SELECT Count(*) FROM news")
@@ -40,21 +46,8 @@ interface NewsDao {
     fun insertAllNewsItem(newsItemList: List<NewsItem>)
 
     /**
-     *Insert all Multimedia
-     * @param multimediaList inserted into multimedia database
-     */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllMultimedia(multimediaList: List<Multimedia?>?)
-
-    /**
      * Delete all old News data
      */
     @Query("DELETE FROM news")
     fun deleteOldNews()
-
-    /**
-     * Delete all old Multimedia data
-     */
-    @Query("DELETE FROM multimedia")
-    fun deleteMultimedia()
 }

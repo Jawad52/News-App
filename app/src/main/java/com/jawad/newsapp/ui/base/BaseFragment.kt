@@ -26,19 +26,21 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     protected abstract fun initializePresenter(view: View)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        initializeDagger()
-    }
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initializeDagger()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View =  inflater.inflate(layoutId, container, false)
+        val view: View = inflater.inflate(layoutId, container, false)
         initializePresenter(view)
         return view
     }
