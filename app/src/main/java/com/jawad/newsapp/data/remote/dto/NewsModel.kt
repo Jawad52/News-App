@@ -45,7 +45,7 @@ data class NewsModel(
     var materialTypeFacet: String,
     
     @SerializedName("multimedia")
-    var multimedia: List<Multimedia>,
+    var multimedia: List<Multimedia>?,
     
     @SerializedName("org_facet")
     var orgFacet: List<String>,

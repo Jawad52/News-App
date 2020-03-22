@@ -12,10 +12,7 @@ import javax.inject.Inject
  * @web www.jawadusman.com
  * @version 1.0
  * @since 15 Mar 2020
- *
- *
  */
-
 class LocalRepository @Inject
 constructor(private val dao: NewsDao) {
 
@@ -43,7 +40,11 @@ constructor(private val dao: NewsDao) {
             newsModelItem.updatedDate = newsItem.updatedDate!!
             newsModelItem.url = newsItem.url!!
             newsModelItem.uri = newsItem.uri!!
-            newsModelItem.multimedia = newsItem.multimedia
+            if (newsItem.multimedia != null) {
+                newsModelItem.multimedia = newsItem.multimedia!!
+            } else {
+                newsModelItem.multimedia = emptyList()
+            }
             newsItemList.add(newsModelItem)
         }
         dao.insertAllNewsItem(newsItemList)

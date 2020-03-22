@@ -35,9 +35,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
     }
-    viewBinding{
-        enabled = true
-    }
     buildTypes {
         release {
             debuggable false

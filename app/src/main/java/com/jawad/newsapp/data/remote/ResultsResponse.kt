@@ -9,6 +9,8 @@ data class ResultsResponse<T>(
     val copyright: String,
     @SerializedName("last_updated")
     val lastUpdated: String,
+    @SerializedName("section")
+    val section: String,
     @SerializedName("num_results")
     val numResults: Int,
     @SerializedName("results")

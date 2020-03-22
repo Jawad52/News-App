@@ -12,6 +12,7 @@ import com.jawad.newsapp.ui.newsList.adapter.NewListAdapter
 import com.jawad.newsapp.ui.newsList.adapter.VerticalItemDecoration
 import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import com.jawad.newsapp.data.remote.Result
+import com.mindvalley.channels.util.EspressoIdlingResource
 import javax.inject.Inject
 
 /**
@@ -33,8 +34,14 @@ class NewsListFragment : BaseFragment() {
         newListViewModel = injectViewModel(viewModel)
     }
 
+    /**
+     * Initialize Presenter methods
+     *
+     *  Call initialize all and set view to observer on data change in the view model
+     *  Passing view from BaseFragment in onCreateView function
+     * @param view
+     */
     override fun initializePresenter(view: View) {
-
         view.rv_newsList.setHasFixedSize(true)
         view.rv_newsList.addItemDecoration(
             VerticalItemDecoration(resources.getDimension(R.dimen._16sdp).toInt(), true)
@@ -43,6 +50,7 @@ class NewsListFragment : BaseFragment() {
             adapter = NewListAdapter()
             view.rv_newsList.adapter = adapter
             subscribeUi(view, adapter!!)
+            EspressoIdlingResource.increment()
             newListViewModel.getNewsList()
         } else {
             view.rv_newsList.adapter = adapter
@@ -50,6 +58,12 @@ class NewsListFragment : BaseFragment() {
         }
     }
 
+    /**
+     * Observer all list to update UI on data change. If MutableLiveData already has data
+     * set, it will be delivered to the observer.
+     * When data changes views will receive the last available data from the server and
+     * local database.
+     */
     private fun subscribeUi(view: View, adapter: NewListAdapter) {
         newListViewModel.mutableListLiveDataResult.observe(this, Observer { result ->
             when (result.status) {
@@ -58,6 +72,7 @@ class NewsListFragment : BaseFragment() {
                     view.tv_header.visibility = View.VISIBLE
                     view.rv_newsList.visibility = View.VISIBLE
                     result.data?.let { adapter.submitList(it) }
+                    EspressoIdlingResource.decrement()
                 }
                 Result.Status.LOADING -> {
                     view.progressBar.visibility = View.VISIBLE
@@ -66,6 +81,7 @@ class NewsListFragment : BaseFragment() {
                 Result.Status.ERROR -> {
                     view.progressBar.visibility = View.GONE
                     Snackbar.make(view, result.message!!, Snackbar.LENGTH_LONG).show()
+                    EspressoIdlingResource.decrement()
                 }
             }
         })
