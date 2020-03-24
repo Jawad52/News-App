@@ -2,9 +2,7 @@
     <string name="app_name">News App</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="application_logo">Application logo</string>
-    <string name="daily_news"></string>
     <string name="daily_nnews">Daily \nNews</string>
     <string name="share_news_details">Share news details</string>
     <string name="news_image">News image</string>

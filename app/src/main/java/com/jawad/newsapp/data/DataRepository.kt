@@ -4,9 +4,8 @@ import com.jawad.newsapp.data.remote.Result
 import com.jawad.newsapp.data.local.LocalRepository
 import com.jawad.newsapp.data.local.model.NewsItem
 import com.jawad.newsapp.data.remote.dataSource.RemoteDataSource
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -39,7 +38,7 @@ constructor(
         scope: CoroutineScope,
         callback: (Result<List<NewsItem>>) -> Unit
     ) {
-        scope.launch(Dispatchers.IO) {
+        scope.launch(Dispatchers.IO + getJobErrorHandler()) {
             callback(Result.loading())
             val response = remoteDataSource.fetchNews()
             if (response.status == Result.Status.SUCCESS) {
@@ -52,5 +51,42 @@ constructor(
                     callback(Result.error(response.message!!))
             }
         }
+    }
+
+
+    fun observeNewsList(
+        connectivityAvailable: Boolean,
+        coroutineScope: CoroutineScope
+    ) = runBlocking {
+        if (connectivityAvailable) observeRemoteNewsList(coroutineScope)
+        else observeLocalNewsList()
+    }
+
+    private fun observeLocalNewsList(): List<NewsItem> {
+        return localRepository.getNewsList()
+    }
+
+    private suspend fun observeRemoteNewsList(ioCoroutineScope: CoroutineScope)
+            : List<NewsItem> {
+        val getNewsList =
+            ioCoroutineScope.async(Dispatchers.IO + getJobErrorHandler()) {
+                val response = remoteDataSource.fetchNews()
+                if (response.status == Result.Status.SUCCESS) {
+                    localRepository.saveNews(response.data!!.results)
+                } else if (response.status == Result.Status.ERROR) {
+                    if (localRepository.getNewsListSize() == 0)
+                        emptyArray<NewsItem>()
+                }
+                localRepository.getNewsList()
+            }
+        return getNewsList.await()
+    }
+
+    private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->
+        postError(e.message ?: e.toString())
+    }
+
+    private fun postError(message: String) {
+        Timber.e("An error happened: $message")
     }
 }

@@ -9,7 +9,6 @@ import com.jawad.newsapp.util.testNewsListB
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.Matchers
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

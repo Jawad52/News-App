@@ -6,8 +6,4 @@
         <item name="background">@color/colorPrimary</item>
     </style>
 
-    <style name="progressBarGray" parent="@style/Theme.AppCompat">
-        <item name="colorAccent">@color/colorPrimary</item>
-    </style>
-
 </resources>

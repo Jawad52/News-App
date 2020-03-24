@@ -1,7 +1,6 @@
 package com.jawad.newsapp.util
 
-import com.jawad.newsapp.data.remote.ResultsResponse
-import com.jawad.newsapp.data.remote.dto.NewsModel
+import com.jawad.newsapp.data.local.model.NewsItem
 import java.util.ArrayList
 
 /**
@@ -15,46 +14,35 @@ import java.util.ArrayList
 
 class TestModelsGenerator {
 
-    fun generateNewsModel(stup: String): ResultsResponse<NewsModel> {
-        val newsItems = ArrayList<NewsModel>()
+    fun generateNewsModel(stup: String): List<NewsItem> {
+        val newsItems = ArrayList<NewsItem>()
         for (i in 0..24) {
             newsItems.add(generateNewsItemModel(stup))
         }
-        return ResultsResponse(
-            copyright = stup, section = stup, lastUpdated = stup,
-            numResults = 25, results = newsItems, status = stup
-        )
+        return newsItems
     }
 
-    fun generateNewsModelWithEmptyList(stup: String): ResultsResponse<NewsModel> {
-        val newsItems = ArrayList<NewsModel>()
-        return ResultsResponse(
-            copyright = stup, section = stup, lastUpdated = stup,
-            numResults = 25, results = newsItems, status = stup
-        )
+    fun generateNewsModelWithEmptyList(): List<NewsItem> {
+        return emptyList()
     }
 
-    fun generateNewsItemModel(stup: String): NewsModel {
-        return NewsModel(
-            title = stup,
-            abstract = stup,
-            url = stup,
-            uri = stup,
-            updatedDate = stup,
-            subsection = stup,
-            shortUrl = stup,
-            section = stup,
-            publishedDate = stup,
-            perFacet = emptyList(),
-            orgFacet = emptyList(),
-            multimedia = emptyList(),
-            materialTypeFacet = stup,
-            kicker = stup,
-            itemType = stup,
-            geoFacet = emptyList(),
-            desFacet = emptyList(),
-            createdDate = stup,
-            byline = stup
-        )
+    fun generateNewsItemModel(stup: String): NewsItem {
+        val newsModelItem = NewsItem()
+        newsModelItem.title = stup
+        newsModelItem.abstractText = stup
+        newsModelItem.byline = stup
+        newsModelItem.createdDate = stup
+        newsModelItem.itemType = stup
+        newsModelItem.kicker = stup
+        newsModelItem.materialTypeFacet = stup
+        newsModelItem.publishedDate = stup
+        newsModelItem.section = stup
+        newsModelItem.shortUrl = stup
+        newsModelItem.subsection = stup
+        newsModelItem.updatedDate = stup
+        newsModelItem.url = stup
+        newsModelItem.uri = stup
+        newsModelItem.multimedia = emptyList()
+        return newsModelItem
     }
 }

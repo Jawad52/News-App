@@ -69,6 +69,7 @@ dependencies {
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "org.assertj:assertj-core:3.12.2"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInlineVersion"
     testImplementation "com.squareup.okhttp3:mockwebserver:$rootProject.mockwebserverVersion"
     implementation "androidx.test:rules:$rootProject.testRulesVersion"
 
@@ -79,8 +80,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     androidTestImplementation "androidx.work:work-testing:$rootProject.workVersion"
-    //Mockk
-    //implementation 'io.mockk:mockk:1.9.3'
+
     implementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1'
     androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.3'

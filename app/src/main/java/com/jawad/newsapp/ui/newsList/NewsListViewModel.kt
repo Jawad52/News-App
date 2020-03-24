@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import com.jawad.newsapp.data.remote.Result
 import com.jawad.newsapp.di.CoroutineScropeIO
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -28,6 +29,7 @@ class NewsListViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     var mutableListLiveDataResult: MutableLiveData<Result<List<NewsItem>>> = MutableLiveData()
+    var connectivityAvailable = false
 
     /**
      * Get News list from data repository
@@ -44,5 +46,14 @@ class NewsListViewModel @Inject constructor(
     override fun onCleared() {
         super.onCleared()
         coroutineScope.cancel()
+    }
+
+    fun searchByTitle(newsItems: List<NewsItem>, keyWord: String): NewsItem? {
+        for (newsItem in newsItems) {
+            if (newsItem.title.isNotEmpty() && newsItem.title.toLowerCase(Locale.ROOT).contains(keyWord.toLowerCase(Locale.ROOT))) {
+                return newsItem
+            }
+        }
+        return null
     }
 }

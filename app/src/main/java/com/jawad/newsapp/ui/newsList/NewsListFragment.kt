@@ -12,6 +12,7 @@ import com.jawad.newsapp.ui.newsList.adapter.NewListAdapter
 import com.jawad.newsapp.ui.newsList.adapter.VerticalItemDecoration
 import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import com.jawad.newsapp.data.remote.Result
+import com.jawad.newsapp.util.ConnectivityUtil
 import com.mindvalley.channels.util.EspressoIdlingResource
 import javax.inject.Inject
 
@@ -32,6 +33,7 @@ class NewsListFragment : BaseFragment() {
 
     override fun initializeDagger() {
         newListViewModel = injectViewModel(viewModel)
+        newListViewModel.connectivityAvailable = ConnectivityUtil.isConnected(context!!)
     }
 
     /**

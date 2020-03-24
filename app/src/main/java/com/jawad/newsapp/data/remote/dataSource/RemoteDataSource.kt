@@ -14,7 +14,6 @@ import javax.inject.Inject
  *
  * Works with the News API to get all the data from server.
  */
-
 class RemoteDataSource @Inject constructor(private val newsService: NewsService) :
     BaseDataSource() {
     suspend fun fetchNews() = getResult { newsService.fetchNews() }

@@ -44,6 +44,7 @@ buildscript {
         coreTestingVersion = '2.1.0'
         testExtJunit = '1.1.1'
         mockitoVersion = "2.25.0"
+        mockitoInlineVersion = "2.13.0"
         mockwebserverVersion = "3.8.1"
         testRulesVersion = "1.2.0"
     }
