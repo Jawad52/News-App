@@ -7,7 +7,7 @@ A News app is a sample app consist of three screens: Splash, news list and detai
 
 The application uses combined MVVM and Clean Architecture and Repository patterns. MVVM is a template of a client application architectureImplemented and it is separate data presentation logic from business logic by moving it into particular class for a clear distinction. Implemented Architecture principles follow Google recommended [Impilimentation guidance to app architecture] (https://developer.android.com/jetpack/docs/guide).
 
-![Guide to app architecture](screenshots/guide-to-app-architecture.png "Guide to app architecture")
+![Guide to app architecture](screenshots/app-architecture.png "Guide to app architecture")
 
 The application is written entirely in Kotlin.
 
